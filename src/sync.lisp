@@ -1,8 +1,10 @@
 (in-package :cl-user)
 (defpackage sync
-  (:use :cl)
+  (:use :cl
+        :cl-annot)
   (:export :make-synchronized
-           :synchronized))
+           :synchronized
+           :synchronized-with))
 (in-package :sync)
 
 (defclass <synchronized> ()
@@ -23,4 +25,17 @@
               (progn
                 ,@body)
            (bt:release-lock ,lock))))))
+
+(defannotation synchronized-with (definition-form)
+    (:arity 1)
+  "synchronized annotation for DEFINITION-FORM"
+  (let ((sync-object (gensym))
+        (def-name (cadr definition-form))
+        (def-args (caddr definition-form))
+        (def-body (cdddr definition-form)))
+    `(progn
+       (defvar ,sync-object (make-synchronized))
+       (defun ,def-name ,def-args
+         (synchronized ,sync-object
+           ,@def-body)))))
 

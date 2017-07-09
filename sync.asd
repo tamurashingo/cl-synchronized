@@ -18,7 +18,10 @@
   :version "0.1"
   :author "tamura shingo"
   :license "MIT"
-  :depends-on (:bordeaux-threads)
+  :depends-on (:bordeaux-threads
+               :cl-syntax
+               :cl-syntax-annot
+               :cl-annot)
   :components ((:module "src"
                 :components
                 ((:file "sync"))))

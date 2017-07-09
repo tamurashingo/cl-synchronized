@@ -2,7 +2,7 @@
 
 CL-Synchronized provides synchronized operation like Java's `synchronized`.
 
-## Usage
+## Usage (with mutex object)
 
 1. create a mutex object `make-synchronized`
 1. use `synchronized` with the mutex object
@@ -59,6 +59,18 @@ CL-Synchronized provides synchronized operation like Java's `synchronized`.
 (format T "*val* is ~A~%" *val*)
 
 >*val* is 10
+```
+
+## Usage (synchronized function)
+
+1. define function with `@synchronized-with` annotation
+
+```common-lisp
+@synchronized-with
+(defun genid-with-sync ()
+  "generate id with synchronized"
+  (sleep 1)
+  (get-universal-time))
 ```
 
 ## Installation
