@@ -1,5 +1,7 @@
 # CL-Synchronized - mutex operation (like Java's synchronized) for CommonLisp
 
+[![Build Status](https://travis-ci.org/tamurashingo/cl-synchronized.svg?branch=master)](https://travis-ci.org/tamurashingo/cl-synchronized)
+
 CL-Synchronized provides synchronized operation like Java's `synchronized`.
 
 ## Usage (with mutex object)
